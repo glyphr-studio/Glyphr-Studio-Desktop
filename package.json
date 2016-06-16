@@ -1,0 +1,14 @@
+{
+  "name": "glyphr-studio-desktop",
+  "version": "0.1.0",
+  "description": "A desktop client for Glyphr",
+  "main": "main.js",
+  "dependencies": {
+    "open": "0.0.5"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^1.2.0",
+    "electron-packager": "^7.0.0",
+    "bower": "1.7.9"
+  }
+}
