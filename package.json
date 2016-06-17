@@ -10,5 +10,8 @@
     "electron-prebuilt": "^1.2.0",
     "electron-packager": "^7.0.0",
     "bower": "1.7.9"
+  },
+  "scripts": {
+    "start": "node build.js && electron ."
   }
 }

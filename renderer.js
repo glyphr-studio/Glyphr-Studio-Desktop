@@ -7,11 +7,11 @@ window.addEventListener('beforeunload', function (event) {
 function confirmClose (event) {
   var confirm = dialog.showMessageBox({
     type: 'question',
-    buttons: ['No', 'Yes', 'Cancel'],
+    buttons: ['Yes', 'No', 'Cancel'],
     message: 'Would you like to save before closing?'
   });
   
-  if (confirm === 1) {
+  if (confirm === 0) {
     saveGlyphrProjectFile();
   }
   if (confirm === 2) {

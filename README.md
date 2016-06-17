@@ -15,7 +15,7 @@ git clone https://github.com/Autre31415/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
 bower i
-node build.js
+npm start
 ```
 
 Build
@@ -30,7 +30,7 @@ git clone https://github.com/Autre31415/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
 bower i
-node build.js
+npm start
 ```
 
 Then using [electron-packager](https://github.com/maxogden/electron-packager):
