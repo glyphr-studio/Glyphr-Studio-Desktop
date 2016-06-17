@@ -5,7 +5,13 @@ window.addEventListener('beforeunload', function (event) {
 });
 
 function confirmClose (event) {
-  var confirm = dialog.showMessageBox({
+  var confirm;
+  
+  if (document.getElementById('splashscreenlogo')) {
+    return;
+  }
+  
+  confirm = dialog.showMessageBox({
     type: 'question',
     buttons: ['Yes', 'No', 'Cancel'],
     message: 'Would you like to save before closing?'
