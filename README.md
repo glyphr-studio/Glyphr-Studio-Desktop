@@ -41,17 +41,18 @@ Mac 64-bit:
 electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --icon=images/appicon.icns --out=build --overwrite=true --platform=darwin --arch=x64 --version=1.2.1 --app-version=0.1.0
 ```
 
+Linux 64-bit:
+
+```
+electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --out=build --overwrite=true --platform=linux --arch=x64 --version=1.2.1 --app-version=0.1.0
+```
+
 Linux 32-bit:
 
 ```
 electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --out=build --overwrite=true --platform=linux --arch=ia32 --version=1.2.1 --app-version=0.1.0
 ```
 
-Linux 64-bit:
-
-```
-electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --out=build --overwrite=true --platform=linux --arch=x64 --version=1.2.1 --app-version=0.1.0
-```
 Windows 64-bit:
 
 ```
@@ -63,8 +64,3 @@ Windows 32-bit:
 ```
 electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription="Glyphr Studio Desktop" --icon=images/appicon.ico --out=build --overwrite=true --platform=win32 --arch=ia32 --version=1.2.1 --app-version=0.1.0
 ```
-
-Known Issues
-===
-
-popOut button not working as intended.
