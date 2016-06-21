@@ -1,7 +1,16 @@
 Glyphr Studio Desktop
 ===
 
-Glyphr Studio was just begging to be a desktop application so here it is!
+[Glyphr Studio](http://glyphrstudio.com) was just begging to be a desktop application so here it is!
+
+Download
+===
+
+- [Mac 64-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.0-beta/Glyphr.Studio-darwin-x64.zip)
+- [Windows 64-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.0-beta/Glyphr.Studio-win32-x64.zip)
+- [Windows 32-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.0-beta/Glyphr.Studio-win32-ia32.zip)
+- [Linux 64-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.0-beta/Glyphr.Studio-linux-x64.zip)
+- [Linux 32-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.0-beta/Glyphr.Studio-linux-ia32.zip)
 
 How to run from source
 ===
