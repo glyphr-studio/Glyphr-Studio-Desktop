@@ -5,7 +5,7 @@ window.addEventListener('beforeunload', function (event) {
   window.onbeforeunload = confirmClose();
 });
 
-function confirmClose (event) {
+function confirmClose(event) {
   var confirm;
   
   if (document.getElementById('splashscreenlogo')) {
@@ -24,14 +24,13 @@ function confirmClose (event) {
   }
   if (confirm === 2) {
     event.preventDefault;
-  };
-};
+  }
+}
 
 saveFile = function(fname, buffer) {
-  console.log('Hello World!');
   destination = dialog.showOpenDialog({
     properties: ['openDirectory'],
     title: 'Choose where to save project...'
   }); 
   fs.writeFile(destination + '/' + fname, buffer);
-}
+};

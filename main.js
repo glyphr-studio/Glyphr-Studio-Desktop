@@ -21,7 +21,7 @@ function createWindow () {
   win.on('closed', function () {
     win = null;
   });
-};
+}
 
 app.on('ready', createWindow);
 
