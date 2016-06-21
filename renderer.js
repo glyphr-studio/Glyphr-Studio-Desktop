@@ -1,4 +1,5 @@
-const {dialog} = require('electron').remote;
+const {dialog} = require('electron').remote,
+      fs = require('fs');
 
 window.addEventListener('beforeunload', function (event) {
   window.onbeforeunload = confirmClose();
@@ -13,6 +14,7 @@ function confirmClose (event) {
   
   confirm = dialog.showMessageBox({
     type: 'question',
+    title: 'Confirm',
     buttons: ['Yes', 'No', 'Cancel'],
     message: 'Would you like to save before closing?'
   });
@@ -24,3 +26,12 @@ function confirmClose (event) {
     event.preventDefault;
   };
 };
+
+saveFile = function(fname, buffer) {
+  console.log('Hello World!');
+  destination = dialog.showOpenDialog({
+    properties: ['openDirectory'],
+    title: 'Choose where to save project...'
+  }); 
+  fs.writeFile(destination + '/' + fname, buffer);
+}
