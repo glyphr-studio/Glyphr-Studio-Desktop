@@ -1,6 +1,6 @@
 {
   "name": "glyphr-studio-desktop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A desktop client for Glyphr",
   "main": "main.js",
   "dependencies": {
