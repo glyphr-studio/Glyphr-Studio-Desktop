@@ -7,8 +7,8 @@
     "open": "0.0.5"
   },
   "devDependencies": {
-    "electron-prebuilt": "^1.2.0",
-    "electron-packager": "^7.0.0",
+    "electron-prebuilt": "^1.2.5",
+    "electron-packager": "^7.0.4",
     "bower": "1.7.9"
   },
   "scripts": {

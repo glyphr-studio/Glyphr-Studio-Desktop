@@ -6,7 +6,13 @@ const electron = require('electron'),
 let win;
 
 function createWindow () {
-  win = new BrowserWindow({width: 1000, height: 800, minWidth: 1000, minHeight: 800,});
+  win = new BrowserWindow({
+    width: 1000,
+    height: 700,
+    minWidth: 1000,
+    minHeight: 700,
+    icon: process.platform === 'linux' && __dirname + '/images/icon.png'
+  });
   win.loadURL('file://' + __dirname + '/bower_components/glyphr-studio/dev/Glyphr_Studio_Autohacked_For_Electron.html');
   
   let webContents = win.webContents;

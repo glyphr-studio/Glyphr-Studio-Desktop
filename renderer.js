@@ -30,7 +30,13 @@ function confirmClose(event) {
 saveFile = function(fname, buffer) {
   destination = dialog.showOpenDialog({
     properties: ['openDirectory'],
-    title: 'Choose where to save project...'
+    title: 'Choose where to save project...',
+    defaultPath: process.env.HOME
   }); 
-  fs.writeFile(destination + '/' + fname, buffer);
+  if (destination !== undefined) {
+    fs.writeFile(destination + '/' + fname, buffer);
+  }
+  else {
+    event.returnValue('Stay Open');
+  }
 };
