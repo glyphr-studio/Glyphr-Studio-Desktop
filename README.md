@@ -30,46 +30,25 @@ npm start
 Build
 ===
 
+Build are constructed with [electron-packager](https://github.com/maxogden/electron-packager).
+
 Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) installed.
 
-Then:
+First, be sure to run:
 
 ```
 git clone https://github.com/Autre31415/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
 bower i
-npm start
 ```
 
-Then using [electron-packager](https://github.com/maxogden/electron-packager):
+Then:
 
-Mac 64-bit:
-
-```
-electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --icon=images/appicon.icns --out=build --overwrite=true --platform=darwin --arch=x64 --version=1.2.5 --app-version=0.1.2 --asar
-```
-
-Linux 64-bit:
-
-```
-electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --out=build --overwrite=true --platform=linux --arch=x64 --version=1.2.5 --app-version=0.1.2 --asar
-```
-
-Linux 32-bit:
-
-```
-electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --out=build --overwrite=true --platform=linux --arch=ia32 --version=1.2.5 --app-version=0.1.2 --asar
-```
-
-Windows 64-bit:
-
-```
-electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription="Glyphr Studio Desktop" --icon=images/appicon.ico --out=build --overwrite=true --platform=win32 --arch=x64 --version=1.2.5 --app-version=0.1.2 --asar
-```
-
-Windows 32-bit:
-
-```
-electron-packager ./ "Glyphr Studio" --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription="Glyphr Studio Desktop" --icon=images/appicon.ico --out=build --overwrite=true --platform=win32 --arch=ia32 --version=1.2.5 --app-version=0.1.2 --asar
-```
+All Platforms: `npm run build`
+64-Bit Platforms Only: `npm run build-64`
+macOS: `npm run build-mac`
+Windows 64-Bit: `npm run build-win`
+Windows 32-Bit: `npm run build-win32`
+Linux 64-Bit: `npm run build-linux`
+Linux 32-Bit: `npm run build-linux32`
