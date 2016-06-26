@@ -46,9 +46,15 @@ bower i
 Then:
 
 All Platforms: `npm run build`
+
 64-Bit Platforms Only: `npm run build-64`
+
 macOS: `npm run build-mac`
+
 Windows 64-Bit: `npm run build-win`
+
 Windows 32-Bit: `npm run build-win32`
+
 Linux 64-Bit: `npm run build-linux`
+
 Linux 32-Bit: `npm run build-linux32`
