@@ -30,7 +30,7 @@ npm start
 Build
 ===
 
-Build are constructed with [electron-packager](https://github.com/maxogden/electron-packager).
+Builds are constructed with [electron-packager](https://github.com/maxogden/electron-packager).
 
 Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) installed.
 
