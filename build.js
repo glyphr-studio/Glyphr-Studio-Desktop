@@ -7,4 +7,5 @@ var html,
 
 html = fs.readFileSync(htmlPath).toString();
 injectScript = html.replace('<\/body>', '<script>require(\'..\/..\/..\/renderer.js\')<\/script><\/body>');
-fs.writeFileSync(autoHackPath, injectScript);
+injectCss = injectScript.replace('href="Glyphr_Studio.css" \/>', 'href="Glyphr_Studio.css" />\n<link rel="stylesheet" type="text/css" href="..\/..\/..\/renderer.css" \/>');
+fs.writeFileSync(autoHackPath, injectCss);
