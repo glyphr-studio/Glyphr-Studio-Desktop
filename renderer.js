@@ -1,6 +1,3 @@
-const {dialog} = require('electron').remote,
-      fs = require('fs');
-
 window.addEventListener('beforeunload', function (event) {
   window.onbeforeunload = confirmClose();
 });
