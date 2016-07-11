@@ -1,6 +1,6 @@
 {
   "name": "glyphr-studio-desktop",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A desktop client for Glyphr",
   "main": "main.js",
   "dependencies": {
@@ -15,10 +15,10 @@
     "start": "node build.js && electron .",
     "build": "npm run build-64 && npm run build-win32 && npm run build-linux32",
     "build-64": "node build.js && npm run build-mac && npm run build-win && npm run build-linux",
-    "build-mac": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --icon=images/appicon.icns --asar --prune --out=build --overwrite=true --platform=darwin --arch=x64 --version=1.2.6 --app-version=0.1.3",
-    "build-win": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription='Glyphr Studio Desktop' --icon=images/appicon.ico --asar --prune --out=build --overwrite=true --platform=win32 --arch=x64 --version=1.2.6 --app-version=0.1.3",
-    "build-win32": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription='Glyphr Studio Desktop' --icon=images/appicon.ico --asar --prune --out=build --overwrite=true --platform=win32 --arch=ia32 --version=1.2.6 --app-version=0.1.3",
-    "build-linux": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --asar --prune --out=build --overwrite=true --platform=linux --arch=x64 --version=1.2.6 --app-version=0.1.3",
-    "build-linux32": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --asar --prune --out=build --overwrite=true --platform=linux --arch=ia32 --version=1.2.6 --app-version=0.1.3"
+    "build-mac": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --icon=images/appicon.icns --asar --prune --out=build --overwrite=true --platform=darwin --arch=x64 --version=1.2.6 --app-version=0.1.4",
+    "build-win": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription='Glyphr Studio Desktop' --icon=images/appicon.ico --asar --prune --out=build --overwrite=true --platform=win32 --arch=x64 --version=1.2.6 --app-version=0.1.4",
+    "build-win32": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --version-string.FileDescription='Glyphr Studio Desktop' --icon=images/appicon.ico --asar --prune --out=build --overwrite=true --platform=win32 --arch=ia32 --version=1.2.6 --app-version=0.1.4",
+    "build-linux": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --asar --prune --out=build --overwrite=true --platform=linux --arch=x64 --version=1.2.6 --app-version=0.1.4",
+    "build-linux32": "node build.js && electron-packager ./ 'Glyphr Studio' --app-bundle-id=glyphr-studio-desktop --asar --prune --out=build --overwrite=true --platform=linux --arch=ia32 --version=1.2.6 --app-version=0.1.4"
   }
 }
