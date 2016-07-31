@@ -6,11 +6,11 @@ Glyphr Studio Desktop
 Download
 ===
 
-- [Mac 64-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-darwin-x64.zip)
-- [Windows 64-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-win32-x64.zip)
-- [Windows 32-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-win32-ia32.zip)
-- [Linux 64-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-linux-x64.zip)
-- [Linux 32-bit](https://github.com/Autre31415/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-linux-ia32.zip)
+- [Mac 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-darwin-x64.zip)
+- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-win32-x64.zip)
+- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-win32-ia32.zip)
+- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-linux-x64.zip)
+- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.1.4-beta/Glyphr.Studio-linux-ia32.zip)
 
 How to run from source
 ===
@@ -20,7 +20,7 @@ Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) ins
 Then:
 
 ```
-git clone https://github.com/Autre31415/Glyphr-Studio-Desktop.git
+git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
 bower i
@@ -37,7 +37,7 @@ Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) ins
 First, be sure to run:
 
 ```
-git clone https://github.com/Autre31415/Glyphr-Studio-Desktop.git
+git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
 bower i
