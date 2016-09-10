@@ -27,16 +27,38 @@ function confirmClose(event) {
   }
 }
 
-saveFile = function(fname, buffer) {
-  destination = dialog.showOpenDialog({
-    properties: ['openDirectory'],
-    title: 'Choose where to save project...',
-    defaultPath: process.env.HOME
-  }); 
-  if (destination !== undefined) {
-    fs.writeFile(destination + '/' + fname, buffer);
+saveFile = function(fname, buffer, ftype) {
+  ftype = ftype || 'text/plain;charset=utf-8';
+  var fblob = new Blob([buffer], {'type':ftype, 'endings':'native'});
+  
+  console.log(fname);
+  console.log(fname.includes('SVG'));
+  
+  if (fname.includes('SVG') || ftype == 'font/opentype') {
+    console.log('SVG or OTF');
+    var link = document.createElement('a');
+    window.URL = window.URL || window.webkitURL;
+    link.href = window.URL.createObjectURL(fblob);
+    //link.onclick = ("alert("+window.URL.createObjectURL(fblob)+");");
+    link.download = fname;
+
+    var event = document.createEvent('MouseEvents');
+    event.initEvent('click', true, false);
+    link.dispatchEvent(event);
+    return;
   }
   else {
-    event.returnValue('Stay Open');
+    console.log('Glyphr Project File');
+    destination = dialog.showOpenDialog({
+      properties: ['openDirectory'],
+      title: 'Choose where to save project...',
+      defaultPath: process.env.HOME
+    }); 
+    if (destination !== undefined) {
+      fs.writeFile(destination + '/' + fname, buffer);
+    }
+    else {
+      event.returnValue('Stay Open');
+    }
   }
 };
