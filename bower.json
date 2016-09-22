@@ -2,6 +2,6 @@
   "name": "glyphr-studio-desktop",
   "private": true,
   "dependencies": {
-    "glyphr-studio": "git://github.com/mattlag/Glyphr-Studio.git#v1.07.06"
+    "glyphr-studio": "git://github.com/glyphr-studio/Glyphr-Studio-1.git#v1.07.07"
  }
 }
