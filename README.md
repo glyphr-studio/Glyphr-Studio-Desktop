@@ -6,11 +6,11 @@ Glyphr Studio Desktop
 Download
 ===
 
-- [Mac 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.1-beta/Glyphr.Studio-darwin-x64.zip)
-- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.1-beta/Glyphr.Studio-win32-x64.zip)
-- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.1-beta/Glyphr.Studio-win32-ia32.zip)
-- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.1-beta/Glyphr.Studio-linux-x64.zip)
-- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.1-beta/Glyphr.Studio-linux-ia32.zip)
+- [Mac 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.2/Glyphr.Studio-darwin-x64.zip)
+- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.2/Glyphr.Studio-win32-x64.zip)
+- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.2/Glyphr.Studio-win32-ia32.zip)
+- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.2/Glyphr.Studio-linux-x64.zip)
+- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.2/Glyphr.Studio-linux-ia32.zip)
 
 How to run from source
 ===
