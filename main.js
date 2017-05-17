@@ -5,7 +5,7 @@ const electron = require('electron'),
 
 let win;
 
-function createWindow () {
+function createWindow() {
   win = new BrowserWindow({
     width: 1000,
     height: 700,
@@ -14,29 +14,30 @@ function createWindow () {
     icon: process.platform === 'linux' && __dirname + '/images/appicon.png'
   });
   win.loadURL('file://' + __dirname + '/bower_components/glyphr-studio/dev/Glyphr_Studio_Autohacked_For_Electron.html');
-  
+
   let webContents = win.webContents;
-  
+
   webContents.on('new-window', function(event, url){
     event.preventDefault();
     open(url);
   });
-  
+
   // webContents.openDevTools()
-  
-  win.on('closed', function () {
+
+  win.on('closed', function() {
     win = null;
   });
 }
 
 app.on('ready', createWindow);
 
-app.on('window-all-closed', function () {
-    if (process.platform != 'darwin')
-      app.quit();
+app.on('window-all-closed', function() {
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
 });
 
-app.on('activate', function () {
+app.on('activate', function() {
   if (win === null) {
     createWindow();
   }
