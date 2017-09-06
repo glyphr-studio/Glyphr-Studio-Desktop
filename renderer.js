@@ -1,8 +1,8 @@
 const {dialog} = require('electron').remote,
       fs = require('fs');
 
-window.addEventListener('beforeunload', function (event) {
-  window.onbeforeunload = confirmClose();
+window.addEventListener('beforeunload', function(event) {
+  window.onbeforeunload = confirmClose(event);
 });
 
 function confirmClose(event) {
@@ -19,11 +19,13 @@ function confirmClose(event) {
     message: 'Would you like to save before closing?'
   });
 
+  // yes
   if (confirm === 0) {
     saveGlyphrProjectFile();
   }
-  if (confirm === 2) {
-    event.preventDefault;
+  // cancel
+  else if (confirm === 2) {
+    event.returnValue = 'false';
   }
 }
 
@@ -36,7 +38,7 @@ saveFile = function(fname, buffer, ftype) {
       event,
       destination;
 
-  if (fname.includes('SVG') || ftype == 'font/opentype') {
+  if (fname.includes('SVG') || ftype === 'font/opentype') {
     link = document.createElement('a');
     window.URL = window.URL || window.webkitURL;
     link.href = window.URL.createObjectURL(fblob);
@@ -58,7 +60,7 @@ saveFile = function(fname, buffer, ftype) {
       fs.writeFile(destination + '/' + fname, buffer);
     }
     else {
-      event.returnValue('Stay Open');
+      event.returnValue = 'false';
     }
   }
 };

@@ -1,7 +1,0 @@
-{
-  "name": "glyphr-studio-desktop",
-  "private": true,
-  "dependencies": {
-    "glyphr-studio": "git://github.com/glyphr-studio/Glyphr-Studio-1.git#v1.07.09"
- }
-}
