@@ -1,10 +1,8 @@
-Glyphr Studio Desktop
-===
+# Glyphr Studio Desktop
 
-[Glyphr Studio](http://glyphrstudio.com) was just begging to be a desktop application so here it is!
+Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Electron](https://electron.atom.io/)!
 
-Download
-===
+## Download
 
 - [Mac 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.3/Glyphr.Studio-darwin-x64.zip)
 - [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.3/Glyphr.Studio-win32-x64.zip)
@@ -12,8 +10,7 @@ Download
 - [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.3/Glyphr.Studio-linux-x64.zip)
 - [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.2.3/Glyphr.Studio-linux-ia32.zip)
 
-How to run from source
-===
+## How to run from source
 
 Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) installed.
 
@@ -23,12 +20,10 @@ Then:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
-bower i
 npm start
 ```
 
-Build
-===
+## Build
 
 Builds are constructed with [electron-packager](https://github.com/maxogden/electron-packager).
 
@@ -40,7 +35,6 @@ First, be sure to run:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
-bower i
 ```
 
 Then:
