@@ -28,9 +28,6 @@ function generateGlyphrElectron() {
     // add renderer.css
     .replace('href="Glyphr_Studio.css" \/>', rendererCss);
 
-
-  console.log(htmlWithRenderer);
-
   console.log('Building Glyphr_Studio_Electron.html');
   fs.writeFileSync(glyphrElectron, htmlWithRenderer);
 }
