@@ -1,44 +1,43 @@
-const electron = require('electron'),
-      {app} = electron,
-      {BrowserWindow} = electron,
-      open = require('open');
+const electron = require('electron')
+const {app} = electron
+const {BrowserWindow} = electron
+const open = require('open')
+const path = require('path')
 
-let win;
+let win
 
-function createWindow() {
+function createWindow () {
   win = new BrowserWindow({
     width: 1000,
     height: 700,
     minWidth: 1000,
     minHeight: 700,
-    icon: process.platform === 'linux' && __dirname + '/images/appicon.png'
-  });
-  win.loadURL('file://' + __dirname + '/node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html');
+    icon: process.platform === 'linux' && path.join(__dirname, '/images/appicon.png')
+  })
+  win.loadURL(path.join('file://', __dirname, '/node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html'))
 
-  let webContents = win.webContents;
+  let webContents = win.webContents
 
-  webContents.on('new-window', function(event, url) {
-    event.preventDefault();
-    open(url);
-  });
+  webContents.on('new-window', function (event, url) {
+    event.preventDefault()
+    open(url)
+  })
 
-  // webContents.openDevTools()
-
-  win.on('closed', function() {
-    win = null;
-  });
+  win.on('closed', function () {
+    win = null
+  })
 }
 
-app.on('ready', createWindow);
+app.on('ready', createWindow)
 
-app.on('window-all-closed', function() {
+app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    app.quit();
+    app.quit()
   }
-});
+})
 
-app.on('activate', function() {
+app.on('activate', function () {
   if (win === null) {
-    createWindow();
+    createWindow()
   }
-});
+})

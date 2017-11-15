@@ -1,6 +1,6 @@
 {
   "name": "glyphr-studio-desktop",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A desktop client for Glyphr Studio",
   "author": "Troy Coutu <autre31415@gmail.com>",
   "license": "GPL-3.0",
@@ -10,118 +10,30 @@
   },
   "main": "main.js",
   "dependencies": {
-    "open": "0.0.5",
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.08.00"
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.09.00",
+    "open": "0.0.5"
   },
   "devDependencies": {
-    "electron": "1.7.5",
-    "electron-packager": "9.0.1",
-    "archiver": "2.0.3",
-    "eslint": "4.6.0",
-    "lint-staged": "^4.0.0",
-    "husky": "^0.14.2"
+    "archiver": "2.1.0",
+    "electron": "1.7.9",
+    "electron-packager": "9.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "standard": "^10.0.3"
   },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 6
-    },
-    "env": {
-      "browser": true,
-      "node": true,
-      "mocha": true
-    },
-    "rules": {
-      "eqeqeq": 2,
-      "curly": 2,
-      "semi": 2,
-      "strict": [
-        2,
-        "never"
-      ],
-      "quotes": [
-        2,
-        "single"
-      ],
-      "no-trailing-spaces": [
-        "error",
-        {
-          "skipBlankLines": false
-        }
-      ],
-      "camelcase": [
-        2,
-        {
-          "properties": "always"
-        }
-      ],
-      "comma-spacing": [
-        2,
-        {
-          "before": false,
-          "after": true
-        }
-      ],
-      "indent": [
-        2,
-        2,
-        {
-          "VariableDeclarator": {
-            "var": 2,
-            "let": 2,
-            "const": 3
-          },
-          "SwitchCase": 1
-        }
-      ],
-      "eol-last": 0,
-      "handle-callback-err": 0,
-      "no-use-before-define": [
-        2,
-        "nofunc"
-      ],
-      "no-unused-vars": [
-        2,
-        {
-          "vars": "all",
-          "args": "none"
-        }
-      ],
-      "no-console": 0,
-      "no-mixed-requires": 0,
-      "one-var": [
-        2,
-        "always"
-      ],
-      "dot-notation": 0,
-      "no-path-concat": 0,
-      "no-alert": 0,
-      "brace-style": [
-        2,
-        "stroustrup"
-      ],
-      "keyword-spacing": [
-        "error",
-        {
-          "before": true,
-          "after": true
-        }
-      ],
-      "space-before-blocks": [
-        "error"
-      ],
-      "space-before-function-paren": [
-        "error",
-        "never"
-      ]
-    }
+  "standard": {
+    "globals": [
+      "Blob",
+      "saveGlyphrProjectFile"
+    ]
   },
   "scripts": {
     "start": "node build.js && electron .",
     "build": "node build.js && node packager.js",
-    "test": "./node_modules/.bin/eslint .",
+    "test": "standard",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": "./node_modules/.bin/eslint"
+    "*.js": "standard"
   }
 }

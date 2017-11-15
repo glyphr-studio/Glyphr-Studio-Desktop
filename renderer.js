@@ -1,15 +1,15 @@
-const {dialog} = require('electron').remote,
-      fs = require('fs');
+const {dialog} = require('electron').remote
+const fs = require('fs')
 
-window.addEventListener('beforeunload', function(event) {
-  window.onbeforeunload = confirmClose(event);
-});
+window.addEventListener('beforeunload', function (event) {
+  window.onbeforeunload = confirmClose(event)
+})
 
-function confirmClose(event) {
-  var confirm;
+function confirmClose (event) {
+  let confirm
 
   if (document.getElementById('splashscreenlogo')) {
-    return;
+    return
   }
 
   confirm = dialog.showMessageBox({
@@ -17,50 +17,44 @@ function confirmClose(event) {
     title: 'Confirm',
     buttons: ['Yes', 'No', 'Cancel'],
     message: 'Would you like to save before closing?'
-  });
+  })
 
-  // yes
-  if (confirm === 0) {
-    saveGlyphrProjectFile();
-  }
-  // cancel
-  else if (confirm === 2) {
-    event.returnValue = 'false';
+  if (confirm === 0) { // yes
+    saveGlyphrProjectFile()
+  } else if (confirm === 2) { // cancel
+    event.returnValue = 'false'
   }
 }
 
-saveFile = function(fname, buffer, ftype) {
-  var fblob = new Blob([buffer], {
-        'type': ftype ? ftype : 'text/plain;charset=utf-8',
-        'endings':'native'
-      }),
-      link,
-      event,
-      destination;
+saveFile = function (fname, buffer, ftype) { // eslint-disable-line
+  let fblob = new Blob([buffer], {
+    'type': ftype || 'text/plain;charset=utf-8',
+    'endings': 'native'
+  })
+  let link
+  let event
+  let destination
 
   if (fname.includes('SVG') || ftype === 'font/opentype') {
-    link = document.createElement('a');
-    window.URL = window.URL || window.webkitURL;
-    link.href = window.URL.createObjectURL(fblob);
-    link.download = fname;
+    link = document.createElement('a')
+    window.URL = window.URL || window.webkitURL
+    link.href = window.URL.createObjectURL(fblob)
+    link.download = fname
 
-    event = document.createEvent('MouseEvents');
-    event.initEvent('click', true, false);
-    link.dispatchEvent(event);
-    return;
-  }
-  else {
+    event = document.createEvent('MouseEvents')
+    event.initEvent('click', true, false)
+    link.dispatchEvent(event)
+  } else {
     destination = dialog.showOpenDialog({
       properties: ['openDirectory'],
       title: 'Choose where to save project...',
       defaultPath: process.env.HOME
-    });
+    })
 
     if (destination !== undefined) {
-      fs.writeFile(destination + '/' + fname, buffer);
-    }
-    else {
-      event.returnValue = 'false';
+      fs.writeFile(destination + '/' + fname, buffer)
+    } else {
+      event.returnValue = 'false'
     }
   }
-};
+}
