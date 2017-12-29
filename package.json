@@ -10,15 +10,15 @@
   },
   "main": "main.js",
   "dependencies": {
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.09.00",
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.09.01",
     "open": "0.0.5"
   },
   "devDependencies": {
-    "archiver": "2.1.0",
+    "archiver": "2.0.3",
     "electron": "1.7.9",
-    "electron-packager": "9.1.0",
+    "electron-packager": "10.1.0",
     "husky": "^0.14.3",
-    "lint-staged": "^5.0.0",
+    "lint-staged": "^6.0.0",
     "standard": "^10.0.3"
   },
   "standard": {
