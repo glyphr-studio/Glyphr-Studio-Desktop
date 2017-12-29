@@ -1,6 +1,6 @@
 {
   "name": "glyphr-studio-desktop",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A desktop client for Glyphr Studio",
   "author": "Troy Coutu <autre31415@gmail.com>",
   "license": "GPL-3.0",
