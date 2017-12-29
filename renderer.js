@@ -1,3 +1,4 @@
+/* global alert */
 const {dialog} = require('electron').remote
 const fs = require('fs')
 
@@ -33,7 +34,6 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
   })
   let link
   let event
-  let destination
 
   if (fname.includes('SVG') || ftype === 'font/opentype') {
     link = document.createElement('a')
@@ -45,16 +45,22 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
     event.initEvent('click', true, false)
     link.dispatchEvent(event)
   } else {
-    destination = dialog.showOpenDialog({
-      properties: ['openDirectory'],
-      title: 'Choose where to save project...',
-      defaultPath: process.env.HOME
-    })
-
-    if (destination !== undefined) {
-      fs.writeFile(destination + '/' + fname, buffer)
+    if (window.saveFileOverwrite && window.saveFileOverwriteFile) {
+      fs.writeFileSync(window.saveFileOverwriteFile, buffer)
+      alert('Saved to ' + window.saveFileOverwriteFile)
     } else {
-      event.returnValue = 'false'
+      dialog.showSaveDialog({
+        properties: ['openFile'],
+        title: 'Choose where to save project...',
+        defaultPath: process.env.HOME + '/' + fname
+      }, function (destination) {
+        if (destination !== undefined) {
+          fs.writeFileSync(destination, buffer)
+          window.saveFileOverwriteFile = destination
+        } else {
+          event.returnValue = 'false'
+        }
+      })
     }
   }
 }

@@ -18,6 +18,9 @@ function createWindow () {
 
   let webContents = win.webContents
 
+  // enable for debugging
+  // win.webContents.openDevTools();
+
   webContents.on('new-window', function (event, url) {
     event.preventDefault()
     open(url)
