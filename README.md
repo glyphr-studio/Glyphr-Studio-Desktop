@@ -4,11 +4,11 @@ Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Elect
 
 ## Download
 
-- [Mac 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.0/Glyphr.Studio-darwin-x64.zip)
-- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.0/Glyphr.Studio-win32-x64.zip)
-- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.0/Glyphr.Studio-win32-ia32.zip)
-- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.0/Glyphr.Studio-linux-x64.zip)
-- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.0/Glyphr.Studio-linux-ia32.zip)
+- [Mac 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.1/Glyphr.Studio-darwin-x64.zip)
+- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.1/Glyphr.Studio-win32-x64.zip)
+- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.1/Glyphr.Studio-win32-ia32.zip)
+- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.1/Glyphr.Studio-linux-x64.zip)
+- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.1/Glyphr.Studio-linux-ia32.zip)
 
 ## How to run from source
 
