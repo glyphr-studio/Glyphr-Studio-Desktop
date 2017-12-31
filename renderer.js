@@ -2,7 +2,6 @@
 const electron = require('electron')
 const {dialog} = electron.remote
 const fs = require('fs')
-const path = require('path')
 let saveQuit = false
 delete window.onbeforeunload
 
@@ -60,7 +59,7 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
       dialog.showSaveDialog({
         properties: ['openFile'],
         title: 'Choose where to save project...',
-        defaultPath: path.join(process.env.HOME, '/', fname)
+        defaultPath: process.env.HOME + '/' + fname
       }, function (destination) {
         if (destination !== undefined) {
           fs.writeFileSync(destination, buffer)
