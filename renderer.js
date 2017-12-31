@@ -29,7 +29,7 @@ function confirmClose (event) {
         // do nothing
       } else {
         window.removeEventListener('beforeunload', confirmClose)
-        electron.remote.app.emit('forcequit')
+        electron.remote.app.emit('window-all-closed')
       }
     })
   })
@@ -68,7 +68,7 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
         }
         if (saveQuit) {
           window.removeEventListener('beforeunload', confirmClose)
-          electron.remote.app.emit('forcequit')
+          electron.remote.app.emit('window-all-closed')
         }
       })
     }

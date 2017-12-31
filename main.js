@@ -113,17 +113,11 @@ function createWindow () {
 app.on('ready', createWindow)
 
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  app.quit()
 })
 
 app.on('activate', function () {
   if (win === null) {
     createWindow()
   }
-})
-
-app.on('forcequit', function () {
-  app.quit()
 })
