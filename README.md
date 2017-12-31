@@ -20,7 +20,8 @@ Then:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
-npm start
+node build.js // needed after each npm i
+electron .
 ```
 
 ## Build
@@ -35,20 +36,25 @@ First, be sure to run:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
+node build.js // needed after each npm i
 ```
 
 Then:
 
-All Platforms: `npm run build`
+All Platforms: `node packager.js`
 
-64-Bit Platforms Only: `npm run build -- -64`
+64-Bit Platforms Only: `node packager.js -64`
 
-macOS: `npm run build -- -mac`
+macOS: `node packager.js -mac`
 
-Windows 64-Bit: `npm run build -- -win`
+Windows 64-Bit: `node packager.js -win`
 
-Windows 32-Bit: `npm run build -- -win32`
+Windows 32-Bit: `node packager.js -win32`
 
-Linux 64-Bit: `npm run build -- -linux`
+Linux 64-Bit: `node packager.js -linux`
 
-Linux 32-Bit: `npm run build -- -linux32`
+Linux 32-Bit: `node packager.js -linux32`
+
+## Troubleshooting
+
+Ubuntu users may need to `sudo apt install libgconf-2-4` in order to run the app.

@@ -1,6 +1,5 @@
 const electron = require('electron')
-const {app} = electron
-const {BrowserWindow} = electron
+const {app, BrowserWindow, Menu} = electron
 const open = require('open')
 const path = require('path')
 
@@ -29,6 +28,86 @@ function createWindow () {
   win.on('closed', function () {
     win = null
   })
+
+  // menu template
+  const template = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Save',
+          accelerator: 'CmdOrCtrl+S',
+          click () {
+            win.webContents.send('save', '')
+          }
+        },
+        {
+          label: 'Save As',
+          accelerator: 'CmdOrCtrl+Shift+S',
+          click () {
+            win.webContents.send('saveas', '')
+          }
+        }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {role: 'resetzoom'},
+        {role: 'zoomin'},
+        {role: 'zoomout'},
+        {type: 'separator'},
+        {role: 'togglefullscreen'}
+      ]
+    },
+    {
+      role: 'window',
+      submenu: [
+        {role: 'minimize'},
+        {role: 'close'}
+      ]
+    },
+    {
+      role: 'help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click () {
+            electron.shell.openExternal('http://glyphrstudio.com')
+          }
+        }
+      ]
+    }
+  ]
+
+  if (process.platform === 'darwin') {
+    template.unshift({
+      label: 'Glyphr Studio',
+      submenu: [
+        {role: 'about'},
+        {type: 'separator'},
+        {role: 'services', submenu: []},
+        {type: 'separator'},
+        {role: 'hide'},
+        {role: 'hideothers'},
+        {role: 'unhide'},
+        {type: 'separator'},
+        {role: 'quit'}
+      ]
+    })
+
+    // Window menu
+    template[2].submenu = [
+      {role: 'close'},
+      {role: 'minimize'},
+      {role: 'zoom'},
+      {type: 'separator'},
+      {role: 'front'}
+    ]
+  }
+
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
 }
 
 app.on('ready', createWindow)

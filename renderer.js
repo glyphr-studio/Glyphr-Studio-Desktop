@@ -1,5 +1,6 @@
 /* global alert */
-const {dialog} = require('electron').remote
+const electron = require('electron')
+const {dialog} = electron.remote
 const fs = require('fs')
 
 window.addEventListener('beforeunload', function (event) {
@@ -57,10 +58,40 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
         if (destination !== undefined) {
           fs.writeFileSync(destination, buffer)
           window.saveFileOverwriteFile = destination
-        } else {
-          event.returnValue = 'false'
         }
       })
     }
   }
+}
+
+// native save menus
+electron.ipcRenderer.on('save', function (event, message) {
+  saveGlyphrProjectFile(true) // overwrite file if a previously saved file exists
+})
+
+electron.ipcRenderer.on('saveas', function (event, message) {
+  saveGlyphrProjectFile()
+})
+
+// hijack save button event
+document.body.addEventListener('click', function () {
+  // mouseover needed to outpace main project's continual redraw of the button
+  document.getElementById('npSave').addEventListener('mouseover', function () {
+    hijackSaveButton()
+  })
+
+  hijackSaveButton()
+})
+
+function hijackSaveButton () {
+  // delay to give time for the element to render
+  setTimeout(function () {
+    let button = document.querySelector('[onclick="saveGlyphrProjectFile();"]')
+    if (button) {
+      button.removeAttribute('onclick') // gotta remove the old onclick attribute to prevent the old and new from fighting with each other
+      button.onclick = function () {
+        saveGlyphrProjectFile(true) // overwrite file if one exists
+      }
+    }
+  }, 100)
 }
