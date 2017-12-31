@@ -90,6 +90,8 @@ document.body.addEventListener('click', function () {
   hijackSaveButton()
 })
 
+let saveMenuEnabled = false
+
 function hijackSaveButton () {
   // delay to give time for the element to render
   setTimeout(function () {
@@ -99,6 +101,10 @@ function hijackSaveButton () {
       button.onclick = function () {
         saveGlyphrProjectFile(true) // overwrite file if one exists
       }
+    }
+    if (!saveMenuEnabled && !document.getElementById('splashscreenlogo')) {
+      electron.remote.app.emit('enableSaveMenu')
+      saveMenuEnabled = true
     }
   }, 100)
 }
