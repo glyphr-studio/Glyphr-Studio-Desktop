@@ -35,7 +35,7 @@ First, be sure to run:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
-node run build
+npm run build
 ```
 
 Then:
