@@ -86,10 +86,7 @@ electron.ipcRenderer.on('saveas', function (event, message) {
 // hijack save button event
 document.body.addEventListener('click', function () {
   // mouseover needed to outpace main project's continual redraw of the button
-  document.getElementById('npSave').addEventListener('mouseover', function () {
-    hijackSaveButton()
-  })
-
+  document.getElementById('npSave').addEventListener('mouseover', hijackSaveButton)
   hijackSaveButton()
 })
 
