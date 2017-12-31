@@ -123,3 +123,7 @@ app.on('activate', function () {
     createWindow()
   }
 })
+
+app.on('forcequit', function () {
+  app.quit()
+})

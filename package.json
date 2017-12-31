@@ -1,5 +1,6 @@
 {
   "name": "glyphr-studio-desktop",
+  "productName": "Glyphr Studio",
   "version": "0.4.2",
   "description": "A desktop client for Glyphr Studio",
   "author": "Glyphr Studio team <mail@glyphrstudio.com>",

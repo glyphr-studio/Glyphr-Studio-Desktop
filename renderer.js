@@ -2,30 +2,36 @@
 const electron = require('electron')
 const {dialog} = electron.remote
 const fs = require('fs')
+let saveQuit = false
+delete window.onbeforeunload
 
-window.addEventListener('beforeunload', function (event) {
-  window.onbeforeunload = confirmClose(event)
-})
+window.addEventListener('beforeunload', confirmClose)
 
 function confirmClose (event) {
-  let confirm
-
   if (document.getElementById('splashscreenlogo')) {
     return
   }
 
-  confirm = dialog.showMessageBox({
-    type: 'question',
-    title: 'Confirm',
-    buttons: ['Yes', 'No', 'Cancel'],
-    message: 'Would you like to save before closing?'
-  })
+  event.returnValue = 'false'
 
-  if (confirm === 0) { // yes
-    saveGlyphrProjectFile()
-  } else if (confirm === 2) { // cancel
-    event.returnValue = 'false'
-  }
+  return new Promise((resolve, reject) => {
+    dialog.showMessageBox({
+      type: 'question',
+      title: 'Confirm',
+      buttons: ['Yes', 'No', 'Cancel'],
+      message: 'Would you like to save before closing?'
+    }, function (response) {
+      if (response === 0) { // yes
+        saveQuit = true
+        saveGlyphrProjectFile()
+      } else if (response === 2) { // cancel
+        // do nothing
+      } else {
+        window.removeEventListener('beforeunload', confirmClose)
+        electron.remote.app.emit('forcequit')
+      }
+    })
+  })
 }
 
 saveFile = function (fname, buffer, ftype) { // eslint-disable-line
@@ -58,6 +64,10 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
         if (destination !== undefined) {
           fs.writeFileSync(destination, buffer)
           window.saveFileOverwriteFile = destination
+        }
+        if (saveQuit) {
+          window.removeEventListener('beforeunload', confirmClose)
+          electron.remote.app.emit('forcequit')
         }
       })
     }
