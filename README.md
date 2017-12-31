@@ -20,8 +20,7 @@ Then:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
-node build.js // needed after each npm i
-electron .
+npm start
 ```
 
 ## Build
@@ -36,24 +35,24 @@ First, be sure to run:
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
-node build.js // needed after each npm i
+node run build
 ```
 
 Then:
 
-All Platforms: `node packager.js`
+All Platforms: `npm run build`
 
-64-Bit Platforms Only: `node packager.js -64`
+64-Bit Platforms Only: `npm run build -- -64`
 
-macOS: `node packager.js -mac`
+macOS: `npm run build -- -mac`
 
-Windows 64-Bit: `node packager.js -win`
+Windows 64-Bit: `npm run build -- -win`
 
-Windows 32-Bit: `node packager.js -win32`
+Windows 32-Bit: `npm run build -- -win32`
 
-Linux 64-Bit: `node packager.js -linux`
+Linux 64-Bit: `npm run build -- -linux`
 
-Linux 32-Bit: `node packager.js -linux32`
+Linux 32-Bit: `npm run build -- -linux32`
 
 ## Troubleshooting
 

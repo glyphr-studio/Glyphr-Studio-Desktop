@@ -1,5 +1,5 @@
 {
-  "name": "Glyphr Studio",
+  "name": "glyphr-studio-desktop",
   "version": "0.4.2",
   "description": "A desktop client for Glyphr Studio",
   "author": "Glyphr Studio team <mail@glyphrstudio.com>",
@@ -20,7 +20,7 @@
     "open": "0.0.5"
   },
   "devDependencies": {
-    "archiver": "2.1.0",
+    "archiver": "2.0.3",
     "electron": "1.7.10",
     "electron-packager": "10.1.0",
     "husky": "0.14.3",
@@ -34,6 +34,9 @@
     ]
   },
   "scripts": {
+    "start": "node build.js && electron .",
+    "build": "node build.js && node packager.js",
+    "test": "standard",
     "precommit": "lint-staged"
   },
   "lint-staged": {
