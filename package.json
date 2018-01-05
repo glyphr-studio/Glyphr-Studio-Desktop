@@ -1,8 +1,15 @@
 {
   "name": "glyphr-studio-desktop",
-  "version": "0.4.1",
+  "productName": "Glyphr Studio",
+  "version": "0.4.2",
   "description": "A desktop client for Glyphr Studio",
-  "author": "Troy Coutu <autre31415@gmail.com>",
+  "author": "Glyphr Studio team <mail@glyphrstudio.com>",
+  "contributors": [
+    "Matt LaGrandeur <mail@glyphrstudio.com>",
+    "Mateusz Zawartka <mail@glyphrstudio.com>",
+    "Troy Coutu <autre31415@gmail.com>",
+    "Eric Newport <kethinov@gmail.com>"
+  ],
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
@@ -10,16 +17,17 @@
   },
   "main": "main.js",
   "dependencies": {
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.09.01",
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.09.02",
+    "electron-editor-context-menu": "1.1.1",
     "open": "0.0.5"
   },
   "devDependencies": {
     "archiver": "2.0.3",
-    "electron": "1.7.9",
+    "electron": "1.7.10",
     "electron-packager": "10.1.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^6.0.0",
-    "standard": "^10.0.3"
+    "husky": "0.14.3",
+    "lint-staged": "6.0.0",
+    "standard": "10.0.3"
   },
   "standard": {
     "globals": [
