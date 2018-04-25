@@ -4,11 +4,11 @@ Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Elect
 
 ## Download
 
-- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.2/Glyphr.Studio-linux-ia32.zip)
-- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.2/Glyphr.Studio-linux-x64.zip)
-- [macOS](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.2/Glyphr.Studio-darwin-x64.zip)
-- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.2/Glyphr.Studio-win32-ia32.zip)
-- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.2/Glyphr.Studio-win32-x64.zip)
+- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.3/Glyphr.Studio-linux-ia32.zip)
+- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.3/Glyphr.Studio-linux-x64.zip)
+- [macOS](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.3/Glyphr.Studio-darwin-x64.zip)
+- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.3/Glyphr.Studio-win32-ia32.zip)
+- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.3/Glyphr.Studio-win32-x64.zip)
 
 ## How to run from source
 
@@ -39,19 +39,19 @@ npm i
 
 Then:
 
-All Platforms: `npm run build`
+All Platforms: `npm run package`
 
-64-Bit Platforms Only: `npm run build -- -64`
+64-Bit Platforms Only: `npm run package -- --64`
 
-Linux 32-Bit: `npm run build -- -linux32`
+Linux 32-Bit: `npm run package -- --linux32`
 
-Linux 64-Bit: `npm run build -- -linux`
+Linux 64-Bit: `npm run package -- --linux`
 
-macOS: `npm run build -- -mac`
+macOS: `npm run package -- --mac`
 
-Windows 32-Bit: `npm run build -- -win32`
+Windows 32-Bit: `npm run package -- --win32`
 
-Windows 64-Bit: `npm run build -- -win`
+Windows 64-Bit: `npm run package -- --win`
 
 ## Troubleshooting
 

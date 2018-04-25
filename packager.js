@@ -19,27 +19,27 @@ let options = {
 
 process.argv.forEach(function (arg) {
   switch (arg) {
-    case '-mac':
+    case '--mac':
       options.platform = 'darwin'
       options.arch = 'x64'
       break
-    case '-win':
+    case '--win':
       options.platform = 'win32'
       options.arch = 'x64'
       break
-    case '-win32':
+    case '--win32':
       options.platform = 'win32'
       options.arch = 'ia32'
       break
-    case '-linux':
+    case '--linux':
       options.platform = 'linux'
       options.arch = 'x64'
       break
-    case '-linux32':
+    case '--linux32':
       options.platform = 'linux'
       options.arch = 'ia32'
       break
-    case '-64':
+    case '--64':
       options.platform = 'linux, win32, darwin'
       options.arch = 'x64'
       break

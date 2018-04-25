@@ -26,7 +26,7 @@ function confirmClose (event) {
         saveQuit = true
         saveGlyphrProjectFile()
       } else if (response === 2) { // cancel
-        // do nothing
+        return false
       } else {
         window.removeEventListener('beforeunload', confirmClose)
         electron.remote.app.emit('window-all-closed')
