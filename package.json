@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "node build.js && electron .",
-    "build": "node build.js && node packager.js",
+    "package": "node build.js && node packager.js",
     "test": "standard",
     "precommit": "lint-staged"
   },

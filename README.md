@@ -39,19 +39,19 @@ npm i
 
 Then:
 
-All Platforms: `npm run build`
+All Platforms: `npm run package`
 
-64-Bit Platforms Only: `npm run build -- -64`
+64-Bit Platforms Only: `npm run package -- --64`
 
-Linux 32-Bit: `npm run build -- -linux32`
+Linux 32-Bit: `npm run package -- --linux32`
 
-Linux 64-Bit: `npm run build -- -linux`
+Linux 64-Bit: `npm run package -- --linux`
 
-macOS: `npm run build -- -mac`
+macOS: `npm run package -- --mac`
 
-Windows 32-Bit: `npm run build -- -win32`
+Windows 32-Bit: `npm run package -- --win32`
 
-Windows 64-Bit: `npm run build -- -win`
+Windows 64-Bit: `npm run package -- --win`
 
 ## Troubleshooting
 
