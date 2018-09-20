@@ -2,7 +2,7 @@ const packager = require('electron-packager')
 const fs = require('fs')
 const archiver = require('archiver')
 const path = require('path')
-let options = {
+const options = {
   dir: './',
   arch: 'ia32, x64',
   asar: true,
@@ -17,7 +17,7 @@ let options = {
   }
 }
 
-process.argv.forEach(function (arg) {
+process.argv.forEach(arg => {
   switch (arg) {
     case '--mac':
       options.platform = 'darwin'
@@ -47,32 +47,38 @@ process.argv.forEach(function (arg) {
 })
 
 packager(options)
-  .then((appPaths) => {
-    appPaths.forEach(function (buildDir) {
-      let buildName = buildDir.split(path.sep)[1]
-      let output = fs.createWriteStream(`build/${buildName}.zip`)
-      let archive = archiver('zip', {
-        zlib: { level: 9 }
-      })
-
-      console.log(`Packing ${buildName} into a zip...`)
-
-      output.on('close', function () {
-        console.log(`Successfully zipped ${buildName}`)
-      })
-
-      archive.on('warning', function (err) {
-        if (err) {
-          console.warn(err)
-        }
-      })
-
-      archive.on('error', function (err) {
-        throw err
-      })
-
-      archive.pipe(output)
-      archive.directory(buildDir, false)
-      archive.finalize()
+  .then(appPaths => {
+    appPaths.forEach(buildDir => {
+      if (typeof buildDir === 'string') {
+        makeArchive(buildDir)
+      }
     })
   })
+
+function makeArchive (buildDir) {
+  let buildName = buildDir.split(path.sep)[1]
+  let output = fs.createWriteStream(`build/${buildName}.zip`)
+  let archive = archiver('zip', {
+    zlib: { level: 9 }
+  })
+
+  console.log(`Packing ${buildName} into a zip...`)
+
+  output.on('close', () => {
+    console.log(`Successfully zipped ${buildName}`)
+  })
+
+  archive.on('warning', err => {
+    if (err) {
+      console.warn(err)
+    }
+  })
+
+  archive.on('error', err => {
+    throw err
+  })
+
+  archive.pipe(output)
+  archive.directory(buildDir, false)
+  archive.finalize()
+}

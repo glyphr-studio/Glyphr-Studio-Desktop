@@ -1,6 +1,6 @@
 const electron = require('electron')
-const {app, BrowserWindow, Menu} = electron
-const open = require('open')
+const { app, BrowserWindow, Menu } = electron
+const opn = require('opn')
 const path = require('path')
 
 // menu template
@@ -41,18 +41,18 @@ const template = [
   {
     label: 'View',
     submenu: [
-      {role: 'resetzoom'},
-      {role: 'zoomin'},
-      {role: 'zoomout'},
-      {type: 'separator'},
-      {role: 'togglefullscreen'}
+      { role: 'resetzoom' },
+      { role: 'zoomin' },
+      { role: 'zoomout' },
+      { type: 'separator' },
+      { role: 'togglefullscreen' }
     ]
   },
   {
     role: 'window',
     submenu: [
-      {role: 'minimize'},
-      {role: 'close'}
+      { role: 'minimize' },
+      { role: 'close' }
     ]
   },
   {
@@ -72,25 +72,25 @@ if (process.platform === 'darwin') {
   template.unshift({
     label: 'Glyphr Studio',
     submenu: [
-      {role: 'about'},
-      {type: 'separator'},
-      {role: 'services', submenu: []},
-      {type: 'separator'},
-      {role: 'hide'},
-      {role: 'hideothers'},
-      {role: 'unhide'},
-      {type: 'separator'},
-      {role: 'quit'}
+      { role: 'about' },
+      { type: 'separator' },
+      { role: 'services', submenu: [] },
+      { type: 'separator' },
+      { role: 'hide' },
+      { role: 'hideothers' },
+      { role: 'unhide' },
+      { type: 'separator' },
+      { role: 'quit' }
     ]
   })
 
   // Window menu
   template[3].submenu = [
-    {role: 'close'},
-    {role: 'minimize'},
-    {role: 'zoom'},
-    {type: 'separator'},
-    {role: 'front'}
+    { role: 'close' },
+    { role: 'minimize' },
+    { role: 'zoom' },
+    { type: 'separator' },
+    { role: 'front' }
   ]
 }
 
@@ -109,14 +109,20 @@ function createWindow () {
   let webContents = win.webContents
 
   // enable for debugging
-  // win.webContents.openDevTools();
+  // win.webContents.openDevTools()
 
-  webContents.on('new-window', function (event, url) {
+  webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    open(url)
+    opn(url)
   })
 
-  win.on('closed', function () {
+  // inform renderer of close event
+  win.on('close', event => {
+    event.preventDefault()
+    win.webContents.send('ping', 'confirmClose')
+  })
+
+  win.on('closed', () => {
     win = null
   })
 
@@ -126,17 +132,17 @@ function createWindow () {
 
 app.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   app.quit()
 })
 
-app.on('activate', function () {
+app.on('activate', () => {
   if (win === null) {
     createWindow()
   }
 })
 
-app.on('enableSaveMenu', function () {
+app.on('enableSaveMenu', () => {
   let i = 0
   if (process.platform === 'darwin') {
     i = 1

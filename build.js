@@ -1,5 +1,4 @@
 const fs = require('fs')
-
 let glyphrPath = 'node_modules/Glyphr-Studio/dev/Glyphr_Studio.html'
 let glyphrElectron = 'node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html'
 let rendererJs = '<script>require(\'../../../renderer.js\')</script></body>'
