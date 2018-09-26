@@ -27,7 +27,7 @@ npm start
 
 Builds are constructed with [electron-packager](https://github.com/maxogden/electron-packager).
 
-Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) installed.
+Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) installed. Linux/Mac users who wish to do builds for Windows will need to have [WINE](https://winehq.org) installed. Mac users who wish to do builds for Windows will need to [XQuartz](https://www.xquartz.org) installed in order to run WINE. It is recommended that Mac users install both Wine and XQuartz via [Homebrew](https://brew.sh).
 
 First, be sure to run:
 
