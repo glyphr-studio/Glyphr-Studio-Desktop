@@ -17,31 +17,29 @@
   },
   "main": "main.js",
   "dependencies": {
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.10.01",
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.11.01",
     "electron-editor-context-menu": "1.1.1",
-    "open": "0.0.5"
+    "opn": "5.4.0"
   },
   "devDependencies": {
-    "archiver": "2.1.1",
-    "electron": "1.8.4",
-    "electron-packager": "11.2.0",
-    "husky": "0.14.3",
-    "lint-staged": "7.0.4",
-    "standard": "11.0.1"
-  },
-  "standard": {
-    "globals": [
-      "Blob",
-      "saveGlyphrProjectFile"
-    ]
+    "archiver": "3.0.0",
+    "electron": "3.0.0",
+    "electron-packager": "12.1.2",
+    "husky": "1.0.0",
+    "lint-staged": "7.3.0",
+    "standard": "12.0.1"
   },
   "scripts": {
     "start": "node build.js && electron .",
     "package": "node build.js && node packager.js",
-    "test": "standard",
-    "precommit": "lint-staged"
+    "test": "standard"
   },
   "lint-staged": {
     "*.js": "standard"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
