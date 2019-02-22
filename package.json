@@ -17,21 +17,45 @@
   },
   "main": "main.js",
   "dependencies": {
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.11.01",
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.12.01",
     "electron-editor-context-menu": "1.1.1",
     "opn": "5.4.0"
   },
   "devDependencies": {
-    "archiver": "3.0.0",
-    "electron": "3.0.0",
-    "electron-packager": "12.1.2",
-    "husky": "1.0.0",
-    "lint-staged": "7.3.0",
+    "electron": "4.0.5",
+    "electron-builder": "20.38.5",
+    "husky": "1.3.1",
+    "lint-staged": "8.1.4",
     "standard": "12.0.1"
+  },
+  "build": {
+    "appId": "com.glyphrstudio.desktop",
+    "productName": "Glyphr Studio",
+    "mac": {
+      "category": "public.app-category.graphics-design"
+    },
+    "dmg": {
+      "iconSize": 140,
+      "iconTextSize": 18
+    },
+    "win": {
+      "verifyUpdateCodeSignature": false
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "snap"
+      ],
+      "synopsis": "Glyphr Studio is a free, web based font designer",
+      "description": "Font design has a high barrier of entry. Professional font design programs are very complex, and/or quite expensive. Glyphr Studio is streamlined and made for font design hobbyists... and it's free!",
+      "category": "Graphics"
+    }
   },
   "scripts": {
     "start": "node build.js && electron .",
-    "package": "node build.js && node packager.js",
+    "pack": "node build.js && electron-builder --dir",
+    "dist": "node build.js && electron-builder --macos --windows --linux",
     "test": "standard"
   },
   "lint-staged": {
