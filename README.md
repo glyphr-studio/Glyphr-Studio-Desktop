@@ -4,11 +4,17 @@ Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Elect
 
 ## Download
 
-- [Linux 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.4/Glyphr.Studio-linux-ia32.zip)
-- [Linux 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.4/Glyphr.Studio-linux-x64.zip)
-- [macOS](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.4/Glyphr.Studio-darwin-x64.zip)
-- [Windows 32-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.4/Glyphr.Studio-win32-ia32.zip)
-- [Windows 64-bit](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/download/v0.4.4/Glyphr.Studio-win32-x64.zip)
+### macOS
+
+[Download](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/latest) the `.dmg` file.
+
+### Windows 7+
+
+[Download](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/latest) the `.exe` file.
+
+### Linux
+
+[Download](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/latest) the `.AppImage`, `.deb`, or `.snap` file
 
 ## How to run from source
 
