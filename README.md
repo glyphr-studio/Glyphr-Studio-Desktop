@@ -31,7 +31,7 @@ npm start
 
 ## Build
 
-Builds are constructed with [electron-packager](https://github.com/maxogden/electron-packager).
+Builds are constructed with [electron-builder](https://github.com/electron-userland/electron-builder).
 
 Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) installed. Linux/Mac users who wish to do builds for Windows will need to have [WINE](https://winehq.org) installed. Mac users who wish to do builds for Windows will need to [XQuartz](https://www.xquartz.org) installed in order to run WINE. It is recommended that Mac users install both Wine and XQuartz via [Homebrew](https://brew.sh).
 
@@ -45,19 +45,17 @@ npm i
 
 Then:
 
-All Platforms: `npm run package`
+To build package zips use:
 
-64-Bit Platforms Only: `npm run package -- --64`
+```
+npm run pack
+```
 
-Linux 32-Bit: `npm run package -- --linux32`
+To build full distributions use:
 
-Linux 64-Bit: `npm run package -- --linux`
-
-macOS: `npm run package -- --mac`
-
-Windows 32-Bit: `npm run package -- --win32`
-
-Windows 64-Bit: `npm run package -- --win`
+```
+npm run dist
+```
 
 ## Troubleshooting
 
