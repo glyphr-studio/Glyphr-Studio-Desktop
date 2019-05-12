@@ -1,6 +1,6 @@
 const electron = require('electron')
 const { app, BrowserWindow, Menu } = electron
-const opn = require('opn')
+const open = require('open')
 const path = require('path')
 
 // menu template
@@ -102,7 +102,10 @@ function createWindow () {
     height: 900,
     minWidth: 1300,
     minHeight: 900,
-    icon: process.platform === 'linux' && path.join(__dirname, '/images/appicon.png')
+    icon: process.platform === 'linux' && path.join(__dirname, '/images/appicon.png'),
+    webPreferences: {
+      nodeIntegration: true
+    }
   })
   win.loadURL(path.join('file://', __dirname, '/node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html'))
 
@@ -113,7 +116,7 @@ function createWindow () {
 
   webContents.on('new-window', (event, url) => {
     event.preventDefault()
-    opn(url)
+    open(url)
   })
 
   // inform renderer of close event
