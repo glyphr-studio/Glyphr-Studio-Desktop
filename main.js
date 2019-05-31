@@ -100,8 +100,8 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1300,
     height: 900,
-    minWidth: 1300,
-    minHeight: 900,
+    minWidth: 1024,
+    minHeight: 768,
     icon: process.platform === 'linux' && path.join(__dirname, '/images/appicon.png'),
     webPreferences: {
       nodeIntegration: true
