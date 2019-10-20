@@ -100,8 +100,8 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1300,
     height: 900,
-    minWidth: 1024,
-    minHeight: 768,
+    minWidth: 800,
+    minHeight: 640,
     icon: process.platform === 'linux' && path.join(__dirname, '/images/appicon.png'),
     webPreferences: {
       nodeIntegration: true
@@ -109,7 +109,7 @@ function createWindow () {
   })
   win.loadURL(path.join('file://', __dirname, '/node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html'))
 
-  let webContents = win.webContents
+  const webContents = win.webContents
 
   // enable for debugging
   // win.webContents.openDevTools()

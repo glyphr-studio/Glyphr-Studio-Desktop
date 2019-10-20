@@ -1,9 +1,9 @@
 const fs = require('fs')
-let glyphrPath = 'node_modules/Glyphr-Studio/dev/Glyphr_Studio.html'
-let glyphrElectron = 'node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html'
-let rendererJs = '<script>require(\'../../../renderer.js\')</script></body>'
-let rendererCss = 'href="Glyphr_Studio.css" />\n<link rel="stylesheet" type="text/css" href="../../../renderer.css" />'
-let html = fs.readFileSync(glyphrPath, 'utf8')
+const glyphrPath = 'node_modules/Glyphr-Studio/dev/Glyphr_Studio.html'
+const glyphrElectron = 'node_modules/Glyphr-Studio/dev/Glyphr_Studio_Electron.html'
+const rendererJs = '<script>require(\'../../../renderer.js\')</script></body>'
+const rendererCss = 'href="Glyphr_Studio.css" />\n<link rel="stylesheet" type="text/css" href="../../../renderer.css" />'
+const html = fs.readFileSync(glyphrPath, 'utf8')
 
 fs.readFile(glyphrElectron, 'utf8', (err, data) => {
   if (err) {
@@ -19,7 +19,7 @@ fs.readFile(glyphrElectron, 'utf8', (err, data) => {
 })
 
 function generateGlyphrElectron () {
-  let htmlWithRenderer = html
+  const htmlWithRenderer = html
     // add renderer.js
     .replace('</body>', rendererJs)
 

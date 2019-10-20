@@ -1,4 +1,4 @@
-/* global alert, Blob, saveGlyphrProjectFile */
+/* global alert, Blob, saveGlyphrProjectFile, _UI */
 
 const electron = require('electron')
 const { remote, ipcRenderer } = electron
@@ -8,6 +8,9 @@ let saveQuit = false
 
 // eliminate onbeforeunload trigger to prevent unexpected close behavior
 delete window.onbeforeunload
+
+// disable dev mode
+_UI.devmode = false
 
 // listen for main process close trigger
 ipcRenderer.on('ping', (event, message) => {
@@ -40,9 +43,9 @@ function confirmClose () {
 
 // override glyphr saveFile function
 saveFile = function (fname, buffer, ftype) { // eslint-disable-line
-  let fblob = new Blob([buffer], {
-    'type': ftype || 'text/plain;charset=utf-8',
-    'endings': 'native'
+  const fblob = new Blob([buffer], {
+    type: ftype || 'text/plain;charset=utf-8',
+    endings: 'native'
   })
   let link
   let event
@@ -99,7 +102,7 @@ let saveMenuEnabled = false
 function hijackSaveButton () {
   // delay to give time for the element to render
   setTimeout(function () {
-    let button = document.querySelector('[onclick="saveGlyphrProjectFile();"]')
+    const button = document.querySelector('[onclick="saveGlyphrProjectFile();"]')
     if (button) {
       button.removeAttribute('onclick') // gotta remove the old onclick attribute to prevent the old and new from fighting with each other
       button.onclick = function () {
@@ -113,13 +116,13 @@ function hijackSaveButton () {
   }, 100)
 }
 
-let buildEditorContextMenu = remote.require('electron-editor-context-menu')
+const buildEditorContextMenu = remote.require('electron-editor-context-menu')
 
 window.addEventListener('contextmenu', event => {
   // Only show the context menu in text editors.
   if (!event.target.closest('textarea, input, [contenteditable="true"]')) return
 
-  let menu = buildEditorContextMenu()
+  const menu = buildEditorContextMenu()
 
   // The 'contextmenu' event is emitted after 'selectionchange' has fired but possibly before the
   // visible selection has changed. Try to wait to show the menu until after that, otherwise the
