@@ -5,6 +5,7 @@ const { remote, ipcRenderer } = electron
 const { dialog } = electron.remote
 const fs = require('fs')
 let saveQuit = false
+let fileName = ''
 
 // eliminate onbeforeunload trigger to prevent unexpected close behavior
 delete window.onbeforeunload
@@ -29,11 +30,13 @@ function confirmClose () {
     title: 'Confirm',
     buttons: ['Yes', 'No', 'Cancel'],
     message: 'Would you like to save before closing?'
-  }, response => {
+  }).then(response => {
+    response = response.response
     if (response === 0) { // yes
       saveQuit = true
       saveGlyphrProjectFile()
     } else if (response === 2) { // cancel
+      saveQuit = false
       return false
     } else {
       remote.app.exit()
@@ -41,8 +44,70 @@ function confirmClose () {
   })
 }
 
+// override glyphr handleDrop function
+handleDrop = function (evt) { // eslint-disable-line
+  // debug('\n handleDrop - START');
+  document.getElementById('openprojecttableright').innerHTML = 'Loading File...'
+  // document.getElementById('openprojecttableright').style.backgroundColor = _UI.colors.gray.offwhite;
+
+  evt.stopPropagation()
+  evt.preventDefault()
+
+  var f = evt.dataTransfer || document.getElementById('filechooser')
+  f = f.files[0]
+  // debug('\t filename: ' + f.name);
+
+  fileName = f.name // new code, exclusive to electron
+
+  var fname = f.name.split('.')
+  fname = fname[fname.length - 1].toLowerCase()
+  // debug('\t fname = ' + fname);
+
+  var reader = new FileReader() // eslint-disable-line
+
+  if (fname === 'otf' || fname === 'ttf') {
+    reader.onload = function () {
+      // debug('\n reader.onload::OTF or TTF - START');
+      _UI.droppedFileContent = reader.result
+      ioOTF_importOTFfont() // eslint-disable-line
+      // debug(' reader.onload:: OTF or TTF - END\n');
+    }
+
+    reader.readAsArrayBuffer(f)
+  } else if (fname === 'svg' || fname === 'txt') {
+    reader.onload = function () {
+      // debug('\n reader.onload::SVG or TXT - START');
+      _UI.droppedFileContent = reader.result
+      if (fname === 'svg') {
+        // debug('\t File = .svg');
+        ioSVG_importSVGfont() // eslint-disable-line
+      } else if (fname === 'txt') {
+        // debug('\t File = .txt');
+        importGlyphrProjectFromText() // eslint-disable-line
+        navigate() // eslint-disable-line
+      }
+      // debug(' reader.onload::SVG OR TXT - END\n');
+    }
+
+    reader.readAsText(f)
+  } else {
+    var con = '<h3>Unsupported file type</h3>'
+    con += 'Glyphr Studio can\'t import .' + fname + ' files.<br>'
+    con += 'Try loading another file.'
+    document.getElementById('openprojecttableright').innerHTML = make_ImportOrCreateNew() // eslint-disable-line
+    openproject_changeTab('load') // eslint-disable-line
+    showErrorMessageBox(con) // eslint-disable-line
+    // document.getElementById('openprojecttableright').style.backgroundColor = _UI.colors.gray.offwhite;
+  }
+
+  // debug(' handleDrop - END\n');
+}
+
 // override glyphr saveFile function
 saveFile = function (fname, buffer, ftype) { // eslint-disable-line
+  if (fileName) {
+    fname = fileName
+  }
   const fblob = new Blob([buffer], {
     type: ftype || 'text/plain;charset=utf-8',
     endings: 'native'
@@ -68,10 +133,12 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
         properties: ['openFile'],
         title: 'Choose where to save project...',
         defaultPath: process.env.HOME + '/' + fname
-      }, function (destination) {
+      }).then(destination => {
+        destination = destination.filePath
         if (destination !== undefined) {
           fs.writeFileSync(destination, buffer)
           window.saveFileOverwriteFile = destination
+          fileName = destination
         }
         if (saveQuit) {
           remote.app.exit()
