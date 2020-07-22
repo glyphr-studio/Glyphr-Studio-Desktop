@@ -31,6 +31,12 @@
   "build": {
     "appId": "com.glyphrstudio.desktop",
     "productName": "Glyphr Studio",
+    "files": [
+      "build/*",
+      "main.js",
+      "renderer.*",
+      "package.json"
+    ],
     "mac": {
       "category": "public.app-category.graphics-design"
     },

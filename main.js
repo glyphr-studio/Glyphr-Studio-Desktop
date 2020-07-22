@@ -102,7 +102,7 @@ function createWindow () {
     height: 900,
     minWidth: 800,
     minHeight: 640,
-    icon: process.platform === 'linux' && path.join(__dirname, '/images/appicon.png'),
+    icon: process.platform === 'linux' && path.join(__dirname, '/build/icon.png'),
     webPreferences: {
       nodeIntegration: true
     }
