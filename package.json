@@ -33,7 +33,9 @@
     "productName": "Glyphr Studio",
     "files": [
       "build/*",
-      "main.js"
+      "main.js",
+      "renderer.*",
+      "package.json"
     ],
     "mac": {
       "category": "public.app-category.graphics-design"
