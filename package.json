@@ -1,7 +1,7 @@
 {
   "name": "glyphr-studio-desktop",
   "productName": "Glyphr Studio",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "A desktop client for Glyphr Studio",
   "author": "Glyphr Studio team <mail@glyphrstudio.com>",
   "contributors": [
@@ -19,13 +19,13 @@
   "dependencies": {
     "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.13.10",
     "electron-editor-context-menu": "~1.1.1",
-    "open": "~7.0.4"
+    "open": "~7.1.0"
   },
   "devDependencies": {
-    "electron": "~9.0.3",
+    "electron": "~9.1.1",
     "electron-builder": "~22.7.0",
     "husky": "~4.2.5",
-    "lint-staged": "~10.2.10",
+    "lint-staged": "~10.2.11",
     "standard": "~14.3.4"
   },
   "build": {
