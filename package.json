@@ -33,9 +33,7 @@
     "productName": "Glyphr Studio",
     "files": [
       "build/*",
-      "main.js",
-      "renderer.*",
-      "package.json"
+      "main.js"
     ],
     "mac": {
       "category": "public.app-category.graphics-design"
@@ -61,7 +59,7 @@
   "scripts": {
     "start": "node build.js && electron .",
     "pack": "node build.js && electron-builder --dir",
-    "dist": "node build.js && electron-builder --linux",
+    "dist": "node build.js && electron-builder --macos --windows --linux",
     "test": "standard"
   },
   "lint-staged": {
