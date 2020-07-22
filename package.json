@@ -35,7 +35,6 @@
       "build/*",
       "main.js",
       "renderer.*",
-      "node_modules/**/*",
       "package.json"
     ],
     "mac": {
@@ -62,7 +61,7 @@
   "scripts": {
     "start": "node build.js && electron .",
     "pack": "node build.js && electron-builder --dir",
-    "dist": "node build.js && electron-builder --macos --windows --linux",
+    "dist": "node build.js && electron-builder --linux",
     "test": "standard"
   },
   "lint-staged": {
