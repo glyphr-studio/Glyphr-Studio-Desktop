@@ -1,11 +1,10 @@
-/* global alert, Blob, saveGlyphrProjectFile, _UI */
+/* global Blob, saveGlyphrProjectFile, handleDrop, navigate, _UI */
 
-const electron = require('electron')
-const { remote, ipcRenderer } = electron
-const { dialog } = electron.remote
-const fs = require('fs')
+// api provided by preload.js
+const electron = window.electron
 let saveQuit = false
-let fileName = ''
+let editor = false
+let currentProjectPath = ''
 
 // eliminate onbeforeunload trigger to prevent unexpected close behavior
 delete window.onbeforeunload
@@ -13,101 +12,99 @@ delete window.onbeforeunload
 // disable dev mode
 _UI.devmode = false
 
-// listen for main process close trigger
-ipcRenderer.on('ping', (event, message) => {
-  if (message === 'confirmClose') {
-    confirmClose()
+// listen to events fired by the main process
+electron.listen(async (event, message) => {
+  switch (message) {
+    case 'confirmClose': {
+      await confirmClose()
+      break
+    }
+    case 'save': {
+      saveGlyphrProjectFile()
+      break
+    }
+    case 'saveas': {
+      currentProjectPath = ''
+      saveGlyphrProjectFile()
+      break
+    }
+    case 'saveImage': {
+      saveCanvasImage()
+      break
+    }
   }
 })
 
-function confirmClose () {
+/**
+ * Event handler for closing out the app
+ */
+async function confirmClose () {
+  // if no project is open, close immediately
   if (document.getElementById('splashscreenlogo')) {
-    remote.app.exit()
+    await electron.exitApp()
   }
 
-  dialog.showMessageBox({
-    type: 'question',
-    title: 'Confirm',
-    buttons: ['Yes', 'No', 'Cancel'],
-    message: 'Would you like to save before closing?'
-  }).then(response => {
-    response = response.response
-    if (response === 0) { // yes
-      saveQuit = true
-      saveGlyphrProjectFile()
-    } else if (response === 2) { // cancel
-      saveQuit = false
-      return false
-    } else {
-      remote.app.exit()
-    }
-  })
+  // close immediately if project has no unsaved changes
+  if (_UI.projectsaved) {
+    await electron.exitApp()
+  }
+
+  // otherwise bring up a save confirmation dialog first
+  const { response } = await electron.confirmClose(currentProjectPath)
+
+  if (response === 0) { // yes
+    saveQuit = true
+    saveGlyphrProjectFile()
+  } else if (response === 1) { // cancel
+    saveQuit = false
+    return false
+  } else { // no
+    await electron.exitApp()
+  }
 }
 
-// override glyphr handleDrop function
+/**
+ * Handle saving the canvas as an image
+ */
+async function saveCanvasImage () {
+  const canvas = document.querySelector('canvas')
+
+  await electron.saveCanvasImage(canvas.toDataURL())
+}
+
+// store references to some glyphr functions that will be overidden
+const glyphrHandleDrop = handleDrop
+const glyphrNavigate = navigate
+
+// override the glyphr handleDrop event to add desktop specific functionality
 handleDrop = function (evt) { // eslint-disable-line
-  // debug('\n handleDrop - START');
-  document.getElementById('openprojecttableright').innerHTML = 'Loading File...'
-  // document.getElementById('openprojecttableright').style.backgroundColor = _UI.colors.gray.offwhite;
-
-  evt.stopPropagation()
-  evt.preventDefault()
-
-  var f = evt.dataTransfer || document.getElementById('filechooser')
+  // logic for deriving file data duplicated from original handleDrop
+  let f = evt.dataTransfer || document.getElementById('filechooser')
   f = f.files[0]
-  // debug('\t filename: ' + f.name);
 
-  fileName = f.name // new code, exclusive to electron
-
-  var fname = f.name.split('.')
-  fname = fname[fname.length - 1].toLowerCase()
-  // debug('\t fname = ' + fname);
-
-  var reader = new FileReader() // eslint-disable-line
-
-  if (fname === 'otf' || fname === 'ttf') {
-    reader.onload = function () {
-      // debug('\n reader.onload::OTF or TTF - START');
-      _UI.droppedFileContent = reader.result
-      ioOTF_importOTFfont() // eslint-disable-line
-      // debug(' reader.onload:: OTF or TTF - END\n');
-    }
-
-    reader.readAsArrayBuffer(f)
-  } else if (fname === 'svg' || fname === 'txt') {
-    reader.onload = function () {
-      // debug('\n reader.onload::SVG or TXT - START');
-      _UI.droppedFileContent = reader.result
-      if (fname === 'svg') {
-        // debug('\t File = .svg');
-        ioSVG_importSVGfont() // eslint-disable-line
-      } else if (fname === 'txt') {
-        // debug('\t File = .txt');
-        importGlyphrProjectFromText() // eslint-disable-line
-        navigate() // eslint-disable-line
-      }
-      // debug(' reader.onload::SVG OR TXT - END\n');
-    }
-
-    reader.readAsText(f)
-  } else {
-    var con = '<h3>Unsupported file type</h3>'
-    con += 'Glyphr Studio can\'t import .' + fname + ' files.<br>'
-    con += 'Try loading another file.'
-    document.getElementById('openprojecttableright').innerHTML = make_ImportOrCreateNew() // eslint-disable-line
-    openproject_changeTab('load') // eslint-disable-line
-    showErrorMessageBox(con) // eslint-disable-line
-    // document.getElementById('openprojecttableright').style.backgroundColor = _UI.colors.gray.offwhite;
+  // store context related to which project file was imported
+  if (f.path.includes('txt')) {
+    currentProjectPath = f.path
   }
 
-  // debug(' handleDrop - END\n');
+  // call the original function
+  glyphrHandleDrop(evt)
+}
+
+// override the glyphr navigation event and use it to know when a project is open
+navigate = async function (oa) { // eslint-disable-line
+  // call the original function
+  glyphrNavigate(oa)
+
+  // detect if we landed on the project page for the first time
+  if (!editor && _UI.current_page === 'glyph edit') {
+    editor = true
+    await electron.enableSaveMenu()
+  }
 }
 
 // override glyphr saveFile function
-saveFile = function (fname, buffer, ftype) { // eslint-disable-line
-  if (fileName) {
-    fname = fileName
-  }
+saveFile = async function (fname, buffer, ftype) { // eslint-disable-line
   const fblob = new Blob([buffer], {
     type: ftype || 'text/plain;charset=utf-8',
     endings: 'native'
@@ -115,7 +112,8 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
   let link
   let event
 
-  if (fname.includes('SVG') || ftype === 'font/opentype') {
+  // handle SVG export logic
+  if (fname.includes('SVG')) {
     link = document.createElement('a')
     window.URL = window.URL || window.webkitURL
     link.href = window.URL.createObjectURL(fblob)
@@ -125,76 +123,21 @@ saveFile = function (fname, buffer, ftype) { // eslint-disable-line
     event.initEvent('click', true, false)
     link.dispatchEvent(event)
   } else {
-    if (window.saveFileOverwrite && window.saveFileOverwriteFile) {
-      fs.writeFileSync(window.saveFileOverwriteFile, buffer)
-      alert('Saved to ' + window.saveFileOverwriteFile)
+    // project file export logic
+    if (currentProjectPath) {
+      // overwrite project if saving one in progress
+      await electron.saveProjectOverwrite(currentProjectPath, buffer)
     } else {
-      dialog.showSaveDialog({
-        properties: ['openFile'],
-        title: 'Choose where to save project...',
-        defaultPath: process.env.HOME + '/' + fname
-      }).then(destination => {
-        destination = destination.filePath
-        if (destination !== undefined) {
-          fs.writeFileSync(destination, buffer)
-          window.saveFileOverwriteFile = destination
-          fileName = destination
-        }
-        if (saveQuit) {
-          remote.app.exit()
-        }
-      })
+      // spin up save confirmation dialog for saving new project
+      const destination = await electron.saveProject(fname, buffer)
+
+      if (destination) {
+        currentProjectPath = destination
+      }
+
+      if (saveQuit) {
+        await electron.exitApp()
+      }
     }
   }
 }
-
-// native save menus
-electron.ipcRenderer.on('save', () => {
-  saveGlyphrProjectFile(true) // overwrite file if a previously saved file exists
-})
-
-electron.ipcRenderer.on('saveas', () => {
-  saveGlyphrProjectFile()
-})
-
-// hijack save button event
-document.body.addEventListener('click', () => {
-  // mouseover needed to outpace main project's continual redraw of the button
-  document.getElementById('npSave').addEventListener('mouseover', hijackSaveButton)
-  hijackSaveButton()
-})
-
-let saveMenuEnabled = false
-
-function hijackSaveButton () {
-  // delay to give time for the element to render
-  setTimeout(function () {
-    const button = document.querySelector('[onclick="saveGlyphrProjectFile();"]')
-    if (button) {
-      button.removeAttribute('onclick') // gotta remove the old onclick attribute to prevent the old and new from fighting with each other
-      button.onclick = function () {
-        saveGlyphrProjectFile(true) // overwrite file if one exists
-      }
-    }
-    if (!saveMenuEnabled && !document.getElementById('splashscreenlogo')) {
-      electron.remote.app.emit('enableSaveMenu')
-      saveMenuEnabled = true
-    }
-  }, 100)
-}
-
-const buildEditorContextMenu = remote.require('electron-editor-context-menu')
-
-window.addEventListener('contextmenu', event => {
-  // Only show the context menu in text editors.
-  if (!event.target.closest('textarea, input, [contenteditable="true"]')) return
-
-  const menu = buildEditorContextMenu()
-
-  // The 'contextmenu' event is emitted after 'selectionchange' has fired but possibly before the
-  // visible selection has changed. Try to wait to show the menu until after that, otherwise the
-  // visible selection will update after the menu dismisses and look weird.
-  setTimeout(() => {
-    menu.popup(remote.getCurrentWindow())
-  }, 30)
-})

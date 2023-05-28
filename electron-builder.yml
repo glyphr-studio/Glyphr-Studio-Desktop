@@ -1,0 +1,21 @@
+appId: com.glyphrstudio.desktop
+productName: Glyphr Studio
+mac:
+  category: public.app-category.graphics-design
+  target:
+    - target: default
+      arch:
+        - arm64
+        - x64
+dmg:
+  iconSize: 140
+  iconTextSize: 18
+win:
+  verifyUpdateCodeSignature: false
+linux:
+  target:
+    - target: AppImage
+    - target: deb
+  synopsis: Glyphr Studio is a free, web based font designer
+  description: Font design has a high barrier of entry. Professional font design programs are very complex, and/or quite expensive. Glyphr Studio is streamlined and made for font design hobbyists... and it's free!
+  category: Graphics
