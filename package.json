@@ -1,13 +1,13 @@
 {
   "name": "glyphr-studio-desktop",
   "productName": "Glyphr Studio",
-  "version": "0.5.6",
+  "version": "0.6.0",
   "description": "A desktop client for Glyphr Studio",
   "author": "Glyphr Studio team <mail@glyphrstudio.com>",
   "contributors": [
     "Matt LaGrandeur <mail@glyphrstudio.com>",
     "Mateusz Zawartka <mail@glyphrstudio.com>",
-    "Troy Coutu <autre31415@gmail.com>",
+    "Troy Coutu <troy.d.coutu@gmail.com>",
     "Eric Newport <kethinov@gmail.com>"
   ],
   "license": "GPL-3.0",
@@ -17,59 +17,23 @@
   },
   "main": "main.js",
   "dependencies": {
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.13.10",
-    "electron-editor-context-menu": "~1.1.1",
-    "open": "~7.1.0"
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.14.0",
+    "electron-context-menu": "3.6.1",
+    "electron-dl": "3.5.2",
+    "electron-window-state": "5.0.3",
+    "fs-extra": "11.2.0",
+    "open": "10.0.3"
   },
   "devDependencies": {
-    "electron": "~9.1.1",
-    "electron-builder": "~22.7.0",
-    "husky": "~4.2.5",
-    "lint-staged": "~10.2.11",
-    "standard": "~14.3.4"
-  },
-  "build": {
-    "appId": "com.glyphrstudio.desktop",
-    "productName": "Glyphr Studio",
-    "files": [
-      "build/*",
-      "main.js",
-      "renderer.*",
-      "package.json"
-    ],
-    "mac": {
-      "category": "public.app-category.graphics-design"
-    },
-    "dmg": {
-      "iconSize": 140,
-      "iconTextSize": 18
-    },
-    "win": {
-      "verifyUpdateCodeSignature": false
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb",
-        "snap"
-      ],
-      "synopsis": "Glyphr Studio is a free, web based font designer",
-      "description": "Font design has a high barrier of entry. Professional font design programs are very complex, and/or quite expensive. Glyphr Studio is streamlined and made for font design hobbyists... and it's free! ",
-      "category": "Graphics"
-    }
+    "electron": "28.2.1",
+    "electron-builder": "24.9.1",
+    "standard": "17.1.0"
   },
   "scripts": {
     "start": "node build.js && electron .",
     "pack": "node build.js && electron-builder --dir",
-    "dist": "node build.js && electron-builder --macos --windows --linux",
+    "dist": "node build.js && electron-builder -mwl",
+    "lint": "standard --fix",
     "test": "standard"
-  },
-  "lint-staged": {
-    "*.js": "standard"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
