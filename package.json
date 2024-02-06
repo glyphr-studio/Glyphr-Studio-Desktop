@@ -17,17 +17,17 @@
   },
   "main": "main.js",
   "dependencies": {
-    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.13.18",
+    "Glyphr-Studio": "glyphr-studio/Glyphr-Studio-1#v1.14.0",
     "electron-context-menu": "3.6.1",
-    "electron-dl": "3.5.0",
+    "electron-dl": "3.5.2",
     "electron-window-state": "5.0.3",
-    "fs-extra": "11.1.1",
-    "open": "9.1.0"
+    "fs-extra": "11.2.0",
+    "open": "10.0.3"
   },
   "devDependencies": {
-    "electron": "24.4.0",
-    "electron-builder": "24.3.0",
-    "standard": "17.0.0"
+    "electron": "28.2.1",
+    "electron-builder": "24.9.1",
+    "standard": "17.1.0"
   },
   "scripts": {
     "start": "node build.js && electron .",

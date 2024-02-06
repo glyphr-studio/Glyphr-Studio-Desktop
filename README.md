@@ -1,6 +1,6 @@
 # Glyphr Studio Desktop
 
-Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Electron](https://electron.atom.io/)!
+Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Electron](https://www.electronjs.org/)!
 
 ## Download
 
@@ -8,7 +8,7 @@ Desktop application for [Glyphr Studio](http://glyphrstudio.com) built in [Elect
 
 [Download](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/latest) the `.dmg` file.
 
-### Windows 7+
+### Windows 10+
 
 [Download](https://github.com/glyphr-studio/Glyphr-Studio-Desktop/releases/latest) the `.exe` file.
 
@@ -22,7 +22,7 @@ Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) ins
 
 Then:
 
-```
+```bash
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
@@ -37,7 +37,7 @@ Be sure to have [Node.js](https://nodejs.org) and [git](https://git-scm.com) ins
 
 First, be sure to run:
 
-```
+```bash
 git clone https://github.com/glyphr-studio/Glyphr-Studio-Desktop.git
 cd Glyphr-Studio-Desktop
 npm i
@@ -47,13 +47,13 @@ Then:
 
 To build package zips use:
 
-```
+```bash
 npm run pack
 ```
 
 To build full distributions use:
 
-```
+```bash
 npm run dist
 ```
 

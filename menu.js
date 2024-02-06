@@ -115,9 +115,14 @@ module.exports = window => {
           label: 'Learn More',
           click: async () => {
             const { shell } = require('electron')
-            await shell.openExternal('http://glyphrstudio.com')
+            await shell.openExternal('http://glyphrstudio.com/v1')
           }
-        }
+        },
+        ...(!isMac
+          ? [
+              { role: 'about' }
+            ]
+          : [])
       ]
     }
   ]

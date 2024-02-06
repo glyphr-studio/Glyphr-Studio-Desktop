@@ -135,6 +135,13 @@ function createWindow () {
     ]
   })
 
+  // configure about app panel
+  app.setAboutPanelOptions({
+    applicationName: app.getName(),
+    applicationVersion: app.getVersion(),
+    website: 'http://glyphrstudio.com/v1'
+  })
+
   const webContents = win.webContents
 
   // enable for debugging
