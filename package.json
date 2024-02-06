@@ -29,6 +29,12 @@
     "electron-builder": "24.9.1",
     "standard": "17.1.0"
   },
+  "standard": {
+    "ignore": [
+      "dist",
+      "build"
+    ]
+  },
   "scripts": {
     "start": "node build.js && electron .",
     "pack": "node build.js && electron-builder --dir",
