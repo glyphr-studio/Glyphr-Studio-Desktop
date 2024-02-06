@@ -2,7 +2,7 @@
 
 ## 0.6.0
 
-- Updated Glyphyr-Studio to v1.14.0.
+- Updated Glyphr-Studio to v1.14.0.
   - Note: This is the final 1.0 version.
 - Updated Electron to v28.2.1.
   - Dropped support for Windows 7.
